@@ -1,10 +1,13 @@
 #include "header.hpp"
+#include "linkedList.hpp"
 
 
 int main(void)
 {
-    cout << "WHATS UP" << endl;
-    cout << "Hey yo" << endl;
+  linkedList run;
+  
+  run.getFileName();
+   
 
     return 0;
 }

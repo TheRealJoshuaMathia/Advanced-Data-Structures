@@ -2,48 +2,15 @@
 
 class linkedList
 {
-private:
-int x;
-public:
-    void readFile();
-    string getFileName();
-    void runProgram();
-    linkedList(/* args */);
-    ~linkedList();
+    private:
+
+    public:
+
+        vector <int> readFile();
+        vector <int> sortVector(vector <int> unsortedList);
+        void runProgram();
+        string getFileName();
+        linkedList();
+        ~linkedList();
+        int convertToInt(string value);
 };
-
-
-linkedList::linkedList(/* args */)
-{
-
-}
-
-linkedList::~linkedList()
-{
-
-}
-
-string linkedList::getFileName()
-{
-    string fileName;
-
-    cout << "Please enter the file name: " << endl;
-    cin >> fileName;
-
-    return fileName;
-}
-
-void linkedList::readFile() 
-{
-
-}
-
-void linkedList::runProgram()
-{
-    string fileName;
-
-    fileName = getFileName();
-    
-
-
-}

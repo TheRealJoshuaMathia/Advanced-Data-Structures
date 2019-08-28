@@ -5,8 +5,8 @@
 int main(void)
 {
   linkedList run;
-  
-  run.getFileName();
+
+  run.runProgram();
    
 
     return 0;

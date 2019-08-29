@@ -2,15 +2,21 @@
 
 class linkedList
 {
-    private:
+private: 
+public:
+    vector<int> readFile();
+    vector<int> sortVector(vector<int> &unsortedVector);
+    void runProgram();
+    forward_list<int> createList(vector<int> &sortedVector);
+    string getFileName();
+    
+    void generateReport(forward_list<int>&singlyLinkedList);
+    int getMin(forward_list<int>&singlyLinkedList);
+    int getMax(forward_list<int>&singlyLinkedList);
+    double findMedian(forward_list<int>&singlyLinkedList);
 
-    public:
-
-        vector <int> readFile();
-        vector <int> sortVector(vector <int> unsortedList);
-        void runProgram();
-        string getFileName();
-        linkedList();
-        ~linkedList();
-        int convertToInt(string value);
+    linkedList();
+    ~linkedList();
+    // Helper Functions
+    int convertToInt(string value);
 };

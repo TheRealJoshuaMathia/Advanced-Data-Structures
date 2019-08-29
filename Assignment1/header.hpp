@@ -16,3 +16,6 @@ using std::ostream;
 using std::string;
 using namespace std::chrono;
 using std::forward_list;
+using std::max_element;
+using std::count;
+using std::nth_element;

@@ -10,8 +10,9 @@ vector<int> linkedList::readFile()
     ifstream input;
     string buffer;
     int conversionResult;
-    char delim = '\n';
+    string delim = "\n";
     char space = ' ';
+    int emptyLines;
 
     do
     {
@@ -19,24 +20,18 @@ vector<int> linkedList::readFile()
         input.open(fileName);
     } while (input.is_open() == false);
 
-    while (!input.eof())
+    while (input >> buffer)
     {
-        
-        conversionResult = convertToInt(buffer);
-        unsortedVector.push_back(conversionResult);
-        
-        if(input.peek() == delim)
+        if(buffer == "\n") // Ignore White Lines at end
         {
-            break;
+            emptyLines++;
         }
-
-        else if(input.peek() == space)
+        else 
         {
-            break;
-
-        }
+            conversionResult = convertToInt(buffer);
+            unsortedVector.push_back(conversionResult);
+        }    
     }
-
     // for (int counter : unsortedVector) Prints values of unsortedVector
     // {
     //     cout << counter << endl;

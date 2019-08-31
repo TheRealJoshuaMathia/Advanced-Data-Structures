@@ -1,9 +1,8 @@
-
 // Joshua Mathia
 // Assignment #1
 // header.hpp File
 
-// Libraries used 
+// Libraries used
 
 #include <iostream>
 #include <fstream>
@@ -14,16 +13,16 @@
 #include <algorithm>
 
 // Namespace
-using std::cout;
 using std::cin;
+using std::cout;
 using std::endl;
-using std::stoi;
-using std::vector;
 using std::ifstream;
 using std::ostream;
+using std::stoi;
 using std::string;
+using std::vector;
 using namespace std::chrono;
+using std::count;
 using std::forward_list;
 using std::max_element;
-using std::count;
 using std::nth_element;

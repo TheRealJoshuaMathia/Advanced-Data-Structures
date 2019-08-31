@@ -1,7 +1,14 @@
 #include "linkedList.hpp"
 
-int counter;
+// Global Variable
+// This variable keeps track of the amount of elements in the list 
+int counter = -1;
 
+
+// readFile() Function
+// This function creates a vector, gets the filename from the user
+// and reads the textfile. The strings extracted are converted into a integer and stored in the vector.
+// The Vector is returned 
 vector<int> linkedList::readFile()
 {
     vector<int> unsortedVector;
@@ -20,9 +27,9 @@ vector<int> linkedList::readFile()
         input.open(fileName);
     } while (input.is_open() == false);
 
-    while (input >> buffer)
+    while (input >> buffer) // Better way EOF wasn't the proper way
     {
-        if(buffer == "\n") // Ignore White Lines at end
+        if(buffer == "\n") // Ignore newlines at end
         {
             emptyLines++;
         }
@@ -39,7 +46,10 @@ vector<int> linkedList::readFile()
 
     return unsortedVector;
 }
-
+//sortVector(&unsortedVector)
+// This function passes unsortedVector as an argument
+// using the STL algorithm class it sorts the vector.
+// It returns the sorted vector
 vector<int> linkedList::sortVector(vector<int> &unsortedVector)
 {
     vector<int> sortedVector;
@@ -56,7 +66,13 @@ vector<int> linkedList::sortVector(vector<int> &unsortedVector)
     //      << "END of testing sorted vector" << endl;
     return sortedVector;
 }
-
+ // createList()
+ // This function passes the sorted vetor into the funtion.
+ // Because the list is sorted, it needs to be reiterated from the 
+ // back(largest values) to the front (small values).
+ // This allows for the list to be populated with the smallest intergers 
+ // being pushed into the front.
+ // Returns a sorted singlylinked list
 forward_list<int> linkedList::createList(vector<int> &sortedVector)
 {
     forward_list<int> singlyLinkedList;
@@ -69,18 +85,22 @@ forward_list<int> linkedList::createList(vector<int> &sortedVector)
         counter++; // This variable is the size of the list
     }
 
-    cout << "---------------\n"
-         << "Testing singlyLinked List" << endl;
-    for (auto count : singlyLinkedList)
-    {
-        cout << count << endl;
-    }
-    cout << "---------------\n"
-         << "Testing singlyLinked List" << endl;
+    // For testing purposes prints out the values of the linked list 
+    // cout << "---------------\n"
+    //      << "Testing singlyLinked List" << endl;
+    // for (auto count : singlyLinkedList)
+    // {
+    //     cout << count << endl;
+    // }
+    // cout << "---------------\n"
+    //      << "Testing singlyLinked List" << endl;
 
     return singlyLinkedList;
 }
-
+// getFileName()
+// This function asks the user for the name of the file, that value is stored in 
+// the string fileName.
+// Returns the string fileName
 string linkedList::getFileName()
 {
     string fileName;

@@ -1,3 +1,10 @@
+
+// Joshua Mathia
+// Assignment #1
+// header.hpp File
+
+// Libraries used 
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,6 +13,7 @@
 #include <forward_list>
 #include <algorithm>
 
+// Namespace
 using std::cout;
 using std::cin;
 using std::endl;

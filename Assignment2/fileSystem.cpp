@@ -43,10 +43,10 @@ int fileSystem::getChoiceFromUser()
     return userChoice;
 }
 //getFileName()
-//This function gets the initial file name starting point from the user.
+//This function gets the initial file name, starting point from the user.
 //The user would select an option from the input menu.
-//That option would
-//Returns userChoice
+//The selection would get the desired fileName.
+//Returns fileName
 string fileSystem::getFileName(vector <string> & fileNames)
 {
     int userChoice = 0;
@@ -66,19 +66,15 @@ string fileSystem::getFileName(vector <string> & fileNames)
 // User would then select from the menu
 void fileSystem::fileNameMenu()
 {
+    int fileSize= 8;
+
+    for(int i = 0; i < FILE_RIGHTBOUND; i++)
+    {
+        cout << "Enter (" << i + 1 << ")" << "for " << fileSize << " input Size" << endl;
+        
+        fileSize = fileSize * 2;
+    }
     cout << "Please enter a number from the list: " << endl;
-    cout << "---------------------------" << endl;
-    cout << "Enter (1) for 8 input Size" << endl;
-    cout << "Enter (2) for 16 input Size" << endl;
-    cout << "Enter (3) for 32 input Size" << endl;
-    cout << "Enter (4) for 64 input Size" << endl;
-    cout << "Enter (5) for 128 input Size" << endl;
-    cout << "Enter (6) for 256 input Size" << endl;
-    cout << "Enter (7) for 512 input Size" << endl;
-    cout << "Enter (8) for 1024 input Size" << endl;
-    cout << "Enter (9) for 2048 input Size" << endl;
-    cout << "Enter (10) for 4096 input Size" << endl;
-    cout << "Enter (11) for 8192 input Size" << endl;
 }
 //generateFileNames()
 //This function generates the fileNames for nessesary for file processing
@@ -106,8 +102,134 @@ vector <string> fileNames;
         
         fileNames.push_back(fileName); // pushes the file name to vector
 
-        cout << fileName << endl;
+        //cout << fileName << endl;  for testing purposes
     }
 
     return fileNames;
+}
+
+//readFile()
+//This function passes the input stream & fullPath inorder to read the file
+//The function opens the file, reads the file and stores each line as a string.
+//The string is then converted to an int and pushed into the vector.
+//The vector is returned
+vector <int> fileSystem::readFile(ifstream &inputFile, string &fullPath)
+{
+    vector <int> inputArray;
+    bool success;
+    string delim = "\n";
+
+    success = openFile(inputFile, fullPath);
+
+    string data;
+    int emptyLines;
+    int conversionResult;
+
+    while(inputFile >> data)
+    {
+        if(data == delim)
+        {
+            emptyLines++;
+        }
+
+        else 
+        {
+            conversionResult = convertToInt(data);
+            inputArray.push_back(conversionResult);
+        }
+    }
+    
+    // for(auto counter : inputArray) // print array
+    // {
+    //     cout << counter << endl;
+    // }
+
+    return inputArray;
+}
+
+//openFile()
+//This function opens the file, from the path that was passed into the function
+//Checks whether file was opened successfully.(Function returns true)
+//Else Function returns false 
+bool fileSystem::openFile(ifstream &input, string &fullPath)
+{
+    bool success = false;
+
+    input.open(fullPath);
+
+    if(input.is_open())
+    {
+    cout << "Opened File succesfully!" << endl;
+    success = true;
+    }
+    else 
+    {
+        cout << "File didn't open successfully!" << endl;
+    }
+
+    return success;
+}
+
+//CloseFile()
+//This function passes the file stream and closes the file
+//Returns true if file was closed
+//Else returns false
+bool fileSystem::closeFile(ifstream &input)
+{
+    bool success = false;
+
+    input.close(); // closes file
+
+    if(!input.is_open()) // checks if the file is not open
+    {
+        cout << "File closed successfully!" << endl;
+        success = true;
+    }
+    
+    return true;
+}
+
+//getFilePath()
+//This function gets the full path for the fileName
+//fullPath is returned
+string fileSystem::getFilePath(string &fileName)
+{
+    string folder = "./inputs/";
+    string fullPath = folder + fileName;
+
+    cout << fullPath << endl;
+
+    return fullPath;
+}
+
+//convertToInt()
+//This function converts the string from the input stream to an integer.
+//result is returned
+int fileSystem::convertToInt(string &data)
+{
+    int result;
+
+    result = stoi(data);
+
+    return result;
+}
+
+//getNextFile()
+//This function passes the fullpath(fileName), and counter(text file number) variable as parameters.
+//The function finds the last 0 in the file name. Creates a sub string and appends the file number and .txt to the end of the string
+// Returns text File
+string fileSystem::getNextFile(string &fullPath, int &counter)
+{
+    std::size_t found = fullPath.find_last_of("0");
+    string fileName;
+    string txt = ".txt";
+    string textFile;
+    string number;
+
+    fileName = fullPath.substr(0,found);
+    number = to_string(counter);
+    
+    textFile = fileName + number + txt;
+
+    return textFile;   
 }

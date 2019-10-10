@@ -1,3 +1,6 @@
+#ifndef header
+#define header
+
 // Joshua Mathia
 // Assignment #3
 // header.hpp File
@@ -10,6 +13,7 @@
 #include <chrono>
 #include <vector>
 #include <algorithm>
+#include <list>
 
 // Namespace
 using std::cin;
@@ -24,3 +28,7 @@ using namespace std::chrono;
 using std::count;
 using std::to_string;
 using std::system;
+using std::iterator;
+using std::list;
+
+#endif

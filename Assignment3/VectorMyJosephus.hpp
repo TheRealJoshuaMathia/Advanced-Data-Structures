@@ -1,3 +1,5 @@
+#ifndef VectorMyJosehus
+#define VectorMyJosehus
 
 #include "Person.hpp"
 
@@ -39,16 +41,23 @@ public:
 	bool isEmpty();
 
 	// eliminates the next person as per the game's rule
-	Person eliminateNext(int key);
+	Person eliminateNext();
 
 	// prints the current content of circle in sequence starting from the person with the least position number
 	void printAll();
 
 	// any other member functions of your choice
 	// ....
+	
+	//This function deals with the logic of the game
+	void gameLogic();
+	//Checks to see if size of the vector is 1. Returns true
+	bool isWinner();
 
 private:
-	vector<Person> circ; 
+	vector<Person> circ;
+	vector<int> losers; // list for the the eliminated players
+	vector<Person>::iterator vectorIterator; //iterator
 
 	int size;	// dynamic size of circle; initially size=N and then it will keep decreasing with each elimination
 	int numOfPlayers;		// the number of people at the start of the game.
@@ -57,3 +66,5 @@ private:
 	// any other variables of your choice
 	// ....
 };
+
+#endif
